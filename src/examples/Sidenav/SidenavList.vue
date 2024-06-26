@@ -12,7 +12,11 @@
         </sidenav-collapse>
       </li>
       <li class="nav-item">
-        <sidenav-collapse nav-text="Management Employee" :to="{ name: 'Manage' }">
+        <sidenav-collapse 
+          nav-text="Management" 
+          :to="{ name: 'Manage' }"
+          :children="managementEmployeeSubmenu"
+        >
           <template #icon>
             <icon name="manage" />
           </template>
@@ -25,7 +29,6 @@
           </template>
         </sidenav-collapse>
       </li>
-
       <li class="nav-item">
         <sidenav-collapse nav-text="Activity" :to="{ name: 'Activity' }">
           <template #icon>
@@ -50,6 +53,7 @@
     </ul>
   </div>
 </template>
+
 <script>
 import Icon from "@/components/Icon.vue";
 import SidenavCollapse from "./SidenavCollapse.vue";
@@ -62,17 +66,12 @@ export default {
     SidenavCollapse,
     SidenavCard,
   },
-  props: {
-    cardBg: {
-      type: String,
-      default: ""
-    },
-  },
   data() {
     return {
-      title: "Vite Soft UI Dashboard",
-      controls: "dashboardsExamples",
-      isActive: "active",
+      managementEmployeeSubmenu: [
+        { navText: "Add Employee", to: { name: "Manage" }, icon: "add" },
+        { navText: "List Employee", to: { name: "ListEmployee" }, icon: "list" },
+      ],
     };
   },
   methods: {
