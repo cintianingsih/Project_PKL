@@ -204,8 +204,20 @@ $_luminance-list: .0008 .001 .0011 .0013 .0015 .0017 .002 .0022 .0025 .0027 .003
 // scss-docs-start color-functions
 // Tint a color: mix a color with white
 @function tint-color($color, $weight) {
-  @return mix(white, $color, $weight);
+  @if (type-of($color) != 'color') {
+    @error "Expected color but got #{type-of($color)}: `#{$color}`";
+  }
+  @if (type-of($weight) != 'number') {
+    @error "Expected number but got #{type-of($weight)}: `#{$weight}`";
+  }
+  @if ($weight < 0 or $weight > 100) {
+    @error "Weight must be between 0 and 100";
+  }
+
+  // Menggunakan variabel $white yang telah didefinisikan sebelumnya
+  @return mix($white, $color, $weight);
 }
+
 
 // Shade a color: mix a color with black
 @function shade-color($color, $weight) {

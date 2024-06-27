@@ -7,7 +7,7 @@ import Activity from "@/views/ActivityView.vue";
 import Mapping from "@/views/MappingView.vue";
 import SetDay from "@/views/SetDayView.vue";
 import Login from "@/views/LoginView.vue";
-import DataEmployee from "@/views/DataEmployeeView.vue";
+import DataEmployee from "../components/DataEmployee.vue";
 import Approval from "@/views/ApprovalView.vue";
 import RequestPermit from "@/views/RequestPermitView.vue";
 import Overtime from "@/views/OvertimeView.vue";
@@ -17,6 +17,32 @@ const routes = [
     path: "/",
     name: "Login",
     component: Login,
+  },
+  {
+    path: '/manage',
+    component: MainLayout,
+    children: [
+      {
+        path: '/manage/data',
+        name: 'DataEmployee',
+        component: DataEmployee
+      },
+      {
+        path: "/manage/approval",
+        name: "Approval",
+        component: Approval
+      },
+      {
+        path: "/manage/request",
+        name: "RequestPermit",
+        component: RequestPermit
+      },
+      {
+        path: "/manage/overtime",
+        name: "Overtime",
+        component: Overtime
+      }
+    ]
   },
   {
     path: "/dashboard",
@@ -54,30 +80,30 @@ const routes = [
     component: SetDay,
     meta: { layout: MainLayout }
   },
-  {
-    path: "/manage/data",
-    name: "DataEmployee",
-    component: DataEmployee,
-    meta: { layout: MainLayout }
-  },
-  {
-    path: "/manage/approval",
-    name: "Approval",
-    component: Approval,
-    meta: { layout: MainLayout }
-  },
-  {
-    path: "/manage/request",
-    name: "RequestPermit",
-    component: RequestPermit,
-    meta: { layout: MainLayout }
-  },
-  {
-    path: "/manage/overtime",
-    name: "Overtime",
-    component: Overtime,
-    meta: { layout: MainLayout }
-  },
+  // {
+  //   path: "/manage/data",
+  //   name: "DataEmployee",
+  //   component: DataEmployee,
+  //   meta: { layout: MainLayout }
+  // },
+  // {
+  //   path: "/manage/approval",
+  //   name: "Approval",
+  //   component: Approval,
+  //   meta: { layout: MainLayout }
+  // },
+  // {
+  //   path: "/manage/request",
+  //   name: "RequestPermit",
+  //   component: RequestPermit,
+  //   meta: { layout: MainLayout }
+  // },
+  // {
+  //   path: "/manage/overtime",
+  //   name: "Overtime",
+  //   component: Overtime,
+  //   meta: { layout: MainLayout }
+  // },
 ];
 
 const router = createRouter({
